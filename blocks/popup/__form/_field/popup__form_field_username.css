@@ -1,0 +1,20 @@
+.popup__form_field_username {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.popup__form_field_username::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: #000;
+  opacity: 0.2;
+}

@@ -1,0 +1,15 @@
+.place {
+  max-width: 282px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .place {
+    max-width: 340px;
+  }
+}

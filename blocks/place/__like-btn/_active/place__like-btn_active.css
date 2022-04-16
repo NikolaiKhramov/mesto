@@ -1,0 +1,4 @@
+.place__like-btn_active {
+  background: none;
+  background-image: url(../../../../images/like-icon_active.svg);
+}

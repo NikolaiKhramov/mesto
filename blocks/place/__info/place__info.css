@@ -1,0 +1,6 @@
+.place__info {
+  width: calc(100% - 36px);
+  margin: 25px auto 31px;
+  display: flex;
+  justify-content: space-between;
+}
