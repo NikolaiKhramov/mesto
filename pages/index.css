@@ -30,8 +30,4 @@
 @import url(../blocks/edit-form/__username/edit-form__username.css);
 @import url(../blocks/edit-form/__input/edit-form__input.css);
 @import url(../blocks/edit-form/__userjob/edit-form__userjob.css);
-/*@import url(../blocks/popup/__form/popup__form.css);
-@import url(../blocks/popup/__form/_field/popup__form_field_username.css);
-@import url(../blocks/popup/__form/_field/popup__form_field_userjob.css);
-@import url(../blocks/popup/__form/_input/popup__form_input.css);*/
 @import url(../blocks/popup/submit-btn/popup__submit-btn.css);
