@@ -1,4 +1,4 @@
-.popup__form_field_userjob {
+.edit-form__userjob {
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -8,7 +8,7 @@
   position: relative;
 }
 
-.popup__form_field_userjob::after {
+.edit-form__userjob::after {
   content: '';
   position: absolute;
   left: 0;

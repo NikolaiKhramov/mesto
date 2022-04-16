@@ -1,4 +1,4 @@
-.popup__form_field_username {
+.edit-form__username {
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -8,7 +8,7 @@
   position: relative;
 }
 
-.popup__form_field_username::after {
+.edit-form__username::after {
   content: '';
   position: absolute;
   left: 0;
