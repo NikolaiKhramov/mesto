@@ -27,10 +27,10 @@ function formSubmitHandler(evt) {
 
 editProfileForm.addEventListener('submit', formSubmitHandler);
 
-let likeButtons = document.querySelectorAll('.place__like-btn');
+/* let likeButtons = document.querySelectorAll('.place__like-btn');
 
 for (let i = 0; i < likeButtons.length; i++) {
   likeButtons[i].addEventListener('click', function(){
     likeButtons[i].classList.toggle('place__like-btn_active');
   });
-}
+}; */

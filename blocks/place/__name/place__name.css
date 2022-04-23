@@ -1,5 +1,5 @@
 .place__name {
-  width: calc(100% - 27px);
+  max-width: 219px;
   margin: 0;
   font-weight: 900;
   font-size: 24px;
@@ -7,52 +7,4 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-}
-
-@media (max-width: 1024px) {
-  .place__name {
-    width: 20vw;
-  }
-}
-
-@media (max-width: 920px) {
-  .place__name {
-    width: 18vw;
-  }
-}
-
-@media (max-width: 853px) {
-  .place__name {
-    width: 16vw;
-  }
-}
-
-@media (max-width: 768px) {
-  .place__name {
-    width: 34vw;
-  }
-}
-
-@media (max-width: 650px) {
-  .place__name {
-    width: 31vw;
-  }
-}
-
-@media (max-width: 565px) {
-  .place__name {
-    width: 28vw;
-  }
-}
-
-@media (max-width: 485px) {
-  .place__name {
-    width: calc(100% - 27px);
-  }
-}
-
-@media (max-width: 378px) {
-  .place__name {
-    width: 68vw;
-  }
 }

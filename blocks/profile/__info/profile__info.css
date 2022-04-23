@@ -10,20 +10,6 @@
   .profile__info {
     width: 100%;
     margin: 22px auto 0;
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-  }
-}
-
-@media (max-width: 425px) {
-  .profile__info {
-    width: 100%;
-    margin: 22px auto 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
   }
 }

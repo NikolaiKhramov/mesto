@@ -1,5 +1,5 @@
 .place__like-btn {
-  width: 22px;
+  min-width: 22px;
   height: 19px;
   margin: 5px 5px 0 0;
   padding: 0;

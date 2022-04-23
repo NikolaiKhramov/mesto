@@ -1,22 +1,10 @@
 .header {
   width: 880px;
   margin: 0 auto;
-  padding-bottom: 41px;
-  position: relative;
+  padding-bottom: 37px;
   box-sizing: border-box;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7)
 }
-
-.header::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border-bottom: 1px solid #545454;
-  opacity: 0.7;
-}
-
 
 @media (max-width: 1024px) {
   .header {

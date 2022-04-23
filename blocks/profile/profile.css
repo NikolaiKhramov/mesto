@@ -29,6 +29,5 @@
   .profile {
     width: calc(100% - (19px*2));
     margin: 42px auto 0;
-    flex-direction: column;
   }
 }
