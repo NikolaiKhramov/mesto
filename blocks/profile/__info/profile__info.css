@@ -13,3 +13,13 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 425px) {
+  .profile__info {
+    display: grid;
+    grid-template-columns: 1fr 37px;
+    grid-template-areas:
+    "username editprofile"
+    "userjob userjob";
+  }
+}

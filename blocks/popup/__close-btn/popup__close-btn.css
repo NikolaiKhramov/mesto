@@ -4,10 +4,7 @@
   height: 32px;
   border: none;
   box-shadow: none;
-  background: none;
-  background-image: url(../../../images/popup__close-icon.svg);
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: url(../../../images/popup__close-icon.svg) no-repeat center/cover;
   position: absolute;
   top: -40px;
   right: -40px;

@@ -11,8 +11,17 @@
 
 @media (max-width: 425px) {
   .profile__info-username {
-    max-width: 189px;
+    max-width: none;
     font-size: 27px;
     line-height: 33px;
+    margin-left: 46px;
+    text-align: center;
+    grid-area: username;
+  }
+}
+
+@media (max-width: 320px) {
+  .profile__info-username {
+    max-width: 189px;
   }
 }

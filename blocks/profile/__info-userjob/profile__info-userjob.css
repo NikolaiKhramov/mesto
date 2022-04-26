@@ -21,5 +21,6 @@
   .profile__info-userjob {
     font-size: 14px;
     line-height: 17px;
+    grid-area: userjob;
   }
 }
