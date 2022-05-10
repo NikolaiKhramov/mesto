@@ -26,6 +26,7 @@
     <section class="places">
       <ul class="places__list">
         <li class="place">
+          <button type="button" class="place__delete-btn"></button>
           <img src="./images/Karachaevsk.jpg" alt="Фото окрестностей Карачаевска" class="place__image">
           <div class="place__info">
             <h2 class="place__name">Карачаевск</h2>
@@ -33,6 +34,7 @@
           </div>
         </li>
         <li class="place">
+          <button type="button" class="place__delete-btn"></button>
           <img src="./images/Elbrus.jpg" alt="Фото горы Эльбрус" class="place__image">
           <div class="place__info">
             <h2 class="place__name">Гора Эльбрус</h2>
@@ -40,6 +42,7 @@
           </div>
         </li>
         <li class="place">
+          <button type="button" class="place__delete-btn"></button>
           <img src="./images/Dombai.jpg" alt="Фото горного хребта Домбай" class="place__image">
           <div class="place__info">
             <h2 class="place__name">Домбай</h2>
@@ -47,6 +50,7 @@
           </div>
         </li>
         <li class="place">
+          <button type="button" class="place__delete-btn"></button>
           <img src="./images/Elbrus.jpg" alt="Фото горы Эльбрус" class="place__image">
           <div class="place__info">
             <h2 class="place__name">Гора Эльбрус</h2>
@@ -54,6 +58,7 @@
           </div>
         </li>
         <li class="place">
+          <button type="button" class="place__delete-btn"></button>
           <img src="./images/Dombai.jpg" alt="Фото горного хребта Домбай" class="place__image">
           <div class="place__info">
             <h2 class="place__name">Домбай</h2>
@@ -61,6 +66,7 @@
           </div>
         </li>
         <li class="place">
+          <button type="button" class="place__delete-btn"></button>
           <img src="./images/Karachaevsk.jpg" alt="Фото окрестностей Карачаевска" class="place__image">
           <div class="place__info">
             <h2 class="place__name">Карачаевск</h2>
@@ -73,21 +79,53 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup popup_context_edit-profile">
     <div class="popup__container">
       <button type="button" class="popup__close-btn"></button>
       <h2 class="popup__purpose">Редактировать профиль</h2>
-      <form class="edit-form" name="edit-profile">
-        <fieldset class="edit-form__username">
-          <input type="text" class="edit-form__input edit-form__input_context_username" name="new-username" placeholder="Ваше имя" required>
+      <form class="form form_context_edit-profile" name="edit-profile">
+        <fieldset class="form__fieldset">
+          <input type="text" class="form__input form__input_context_username" name="new-username" placeholder="Ваше имя" required>
         </fieldset>
-        <fieldset class="edit-form__userjob">
-          <input type="text" class="edit-form__input edit-form__input_context_userjob" name="new-userjob" placeholder="Ваш род деятельности" required>
+        <fieldset class="form__fieldset">
+          <input type="text" class="form__input form__input_context_userjob" name="new-userjob" placeholder="Ваш род деятельности" required>
         </fieldset>
         <button type="submit" class="popup__submit-btn">Сохранить</button>
       </form>
     </div>
   </div>
+  <div class="popup popup_context_create-new-place">
+    <div class="popup__container">
+      <button type="button" class="popup__close-btn"></button>
+      <h2 class="popup__purpose">Новое место</h2>
+      <form class="form form_context_add-new-place" name="new-place">
+        <fieldset class="form__fieldset">
+          <input type="text" class="form__input form__input_context_place-name" name="new-place-name" placeholder="Название места" required>
+        </fieldset>
+        <fieldset class="form__fieldset">
+          <input type="url" class="form__input form__input_context_place-link" name="new-place-link" placeholder="Ссылка на картинку" required>
+        </fieldset>
+        <button type="submit" class="popup__submit-btn">Создать</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_context_fullscreen-place">
+    <figure class="fullscreen-place">
+      <button type="button" class="popup__close-btn"></button>
+      <img class="fullscreen-place__image" src="" alt="">
+      <figcaption class="fullscreen-place__name"></figcaption>
+    </figure>
+  </div>
+  <template id="place-template">
+    <li class="place">
+      <button type="button" class="place__delete-btn"></button>
+      <div class="place__image-container"></div>
+      <div class="place__info">
+        <h2 class="place__name"></h2>
+        <button type="button" class="place__like-btn"></button>
+      </div>
+    </li>
+  </template>
   <script src="./scripts/script.js"></script>
 </body>
 </html>
