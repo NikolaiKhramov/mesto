@@ -1,9 +1,10 @@
 const userInfo = document.querySelector('.profile__info');
-const profileEditForm = document.querySelector('[name=edit-profile]');
+const profileEditForm = document.querySelector('[name=profileEdit]');
 let userNameInput = profileEditForm.querySelector('[name=new-username]');
 let userJobInput = profileEditForm.querySelector('[name=new-userjob]');
 let currentUserName = userInfo.querySelector('.profile__info-username');
 let currentUserJob = userInfo.querySelector('.profile__info-userjob');
+const profileEditFormSubmitButton = profileEditForm.querySelector('.popup__submit-btn');
 const profileEditPopup = document.querySelector('.popup_context_edit-profile');
 const profileEditPopupOpenButton = userInfo.querySelector('.profile__info-edit');
 
@@ -11,6 +12,7 @@ const newPlacePopup = document.querySelector('.popup_context_create-new-place');
 const newPlaceForm = newPlacePopup.querySelector('[name=new-place]');
 const newPlaceNameInput = newPlacePopup.querySelector('[name=new-place-name]');
 const newPlaceLinkInput = newPlacePopup.querySelector('[name=new-place-link]');
+const newPlaceFormSubmitButton = newPlacePopup.querySelector('.popup__submit-btn');
 const newPlacePopupOpenButton = document.querySelector('.profile__add-btn');
 const newPlaceCardTemplate = document.querySelector('#place-template').content.querySelector('.place');
 const placeCardsContainer = document.querySelector('.places__list');
@@ -19,25 +21,62 @@ const fullscreenPlacePopup = document.querySelector('.popup_context_fullscreen-p
 let fullscreenPlaceImage = fullscreenPlacePopup.querySelector('.fullscreen-place__image');
 let fullscreenPlaceName = fullscreenPlacePopup.querySelector('.fullscreen-place__name');
 
+const popups = document.querySelectorAll('.popup');
 const popupCloseButtons = document.querySelectorAll('.popup__close-btn');
 
-// Функция для открытия/закрытия попапов
+// Функция открытия попапов
 function openPopup(popup) {
-  popup.classList.toggle('popup_opened');
+  popup.classList.add('popup_opened');
+  document.addEventListener('keyup', closePopupByEscButton);
+};
+
+//Функция сброса полей и ошибков форм
+function resetPopupForms(popup) {
+  const formToReset = popup.querySelector('.form');
+  resetErrors(formToReset, validationData);
+  formToReset.reset();
+};
+
+//Функция закрытия попапов
+function closePopup(popup) {
+  if (popup !== fullscreenPlacePopup) {
+    resetPopupForms(popup);
+  }
+  popup.classList.remove('popup_opened');
 };
 
 // Закрытие попапов на крестик
 popupCloseButtons.forEach(elem => {
   elem.addEventListener('click', function(event) {
-    openPopup(event.target.closest('.popup'));
+    closePopup(event.target.closest('.popup'));
   });
 });
+
+// Функция закрытия попапов при клике на оверлей
+function closePopupOnOverlay(event) {
+  if (event.target === event.currentTarget) {
+    closePopup(event.target);
+  };
+};
+
+popups.forEach((element) => {
+  element.addEventListener('mousedown', closePopupOnOverlay);
+});
+
+//Функция закрытия попапов нажатием на Esc
+function closePopupByEscButton(event) {
+  if (event.key === 'Escape') {
+    const popupToClose = document.querySelector('.popup_opened');
+    closePopup(popupToClose);
+  };
+};
 
 // Открытие попапа для смены имени/описания пользователя
 profileEditPopupOpenButton.addEventListener('click', function() {
   openPopup(profileEditPopup);
   userNameInput.value = currentUserName.textContent;
   userJobInput.value = currentUserJob.textContent;
+  disableSubmitButton(profileEditFormSubmitButton, validationData);
 });
 
 // Работа с формой для смены имени/описания пользователя
@@ -45,7 +84,7 @@ function profileEditFormHandler(evt) {
   evt.preventDefault();
   currentUserName.textContent = userNameInput.value;
   currentUserJob.textContent = userJobInput.value;
-  openPopup(profileEditPopup);
+  closePopup(profileEditPopup);
 };
 
 // Генерация карточек Место из заданного массива и добавленных позднее
@@ -87,8 +126,8 @@ initialCards.forEach((card) => {
 // Открытие попапа для добавления новой карточки Место
 newPlacePopupOpenButton.addEventListener('click', function() {
   openPopup(newPlacePopup);
-  newPlaceNameInput.value = '';
-  newPlaceLinkInput.value = '';
+
+  disableSubmitButton(newPlaceFormSubmitButton, validationData);
 });
 
 // Работа с формой для создания новой карточки Место
@@ -97,7 +136,7 @@ const addNewPlaceFormHandler = (event) => {
 
   renderPlaceCard({ name: newPlaceNameInput.value, link: newPlaceLinkInput.value });
 
-  openPopup(newPlacePopup);
+  closePopup(newPlacePopup);
 };
 
 //Обработчик для формы редактирования профиля

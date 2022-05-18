@@ -35,12 +35,14 @@
     <div class="popup__container">
       <button type="button" class="popup__close-btn"></button>
       <h2 class="popup__purpose">Редактировать профиль</h2>
-      <form class="form form_context_edit-profile" name="edit-profile">
+      <form class="form form_context_edit-profile" name="profileEdit" novalidate>
         <fieldset class="form__fieldset">
-          <input type="text" class="form__input form__input_context_username" name="new-username" placeholder="Ваше имя" required>
+          <input id="username" type="text" class="form__input form__input_context_username" name="new-username" placeholder="Ваше имя" required minlength="2" maxlength="40">
+          <span id="username-error" class="form__error"></span>
         </fieldset>
         <fieldset class="form__fieldset">
-          <input type="text" class="form__input form__input_context_userjob" name="new-userjob" placeholder="Ваш род деятельности" required>
+          <input id="userjob" type="text" class="form__input form__input_context_userjob" name="new-userjob" placeholder="Ваш род деятельности" required minlength="2" maxlength="200">
+          <span id="userjob-error" class="form__error"></span>
         </fieldset>
         <button type="submit" class="popup__submit-btn">Сохранить</button>
       </form>
@@ -50,12 +52,14 @@
     <div class="popup__container">
       <button type="button" class="popup__close-btn"></button>
       <h2 class="popup__purpose">Новое место</h2>
-      <form class="form form_context_add-new-place" name="new-place">
+      <form class="form form_context_add-new-place" name="new-place" novalidate>
         <fieldset class="form__fieldset">
-          <input type="text" class="form__input form__input_context_place-name" name="new-place-name" placeholder="Название места" required>
+          <input id="place-name" type="text" class="form__input form__input_context_place-name" name="new-place-name" placeholder="Название места" minlength="2" maxlength="30" required>
+          <span id="place-name-error" class="form__error"></span>
         </fieldset>
         <fieldset class="form__fieldset">
-          <input type="url" class="form__input form__input_context_place-link" name="new-place-link" placeholder="Ссылка на картинку" required>
+          <input id="place-link" type="url" class="form__input form__input_context_place-link" name="new-place-link" placeholder="Ссылка на картинку" required>
+          <span id="place-link-error" class="form__error"></span>
         </fieldset>
         <button type="submit" class="popup__submit-btn">Создать</button>
       </form>
@@ -79,6 +83,7 @@
     </li>
   </template>
   <script src="./scripts/cards.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/script.js"></script>
 </body>
 </html>
