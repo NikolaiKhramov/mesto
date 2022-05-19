@@ -1,9 +1,9 @@
 const userInfo = document.querySelector('.profile__info');
 const profileEditForm = document.querySelector('[name=profileEdit]');
-let userNameInput = profileEditForm.querySelector('[name=new-username]');
-let userJobInput = profileEditForm.querySelector('[name=new-userjob]');
-let currentUserName = userInfo.querySelector('.profile__info-username');
-let currentUserJob = userInfo.querySelector('.profile__info-userjob');
+const userNameInput = profileEditForm.querySelector('[name=new-username]');
+const userJobInput = profileEditForm.querySelector('[name=new-userjob]');
+const currentUserName = userInfo.querySelector('.profile__info-username');
+const currentUserJob = userInfo.querySelector('.profile__info-userjob');
 const profileEditFormSubmitButton = profileEditForm.querySelector('.popup__submit-btn');
 const profileEditPopup = document.querySelector('.popup_context_edit-profile');
 const profileEditPopupOpenButton = userInfo.querySelector('.profile__info-edit');
@@ -15,7 +15,6 @@ const newPlaceLinkInput = newPlacePopup.querySelector('[name=new-place-link]');
 const newPlaceFormSubmitButton = newPlacePopup.querySelector('.popup__submit-btn');
 const newPlacePopupOpenButton = document.querySelector('.profile__add-btn');
 const newPlaceCardTemplate = document.querySelector('#place-template').content.querySelector('.place');
-const placeCardsContainer = document.querySelector('.places__list');
 
 const fullscreenPlacePopup = document.querySelector('.popup_context_fullscreen-place');
 let fullscreenPlaceImage = fullscreenPlacePopup.querySelector('.fullscreen-place__image');
@@ -30,18 +29,8 @@ function openPopup(popup) {
   document.addEventListener('keyup', closePopupByEscButton);
 };
 
-//Функция сброса полей и ошибков форм
-function resetPopupForms(popup) {
-  const formToReset = popup.querySelector('.form');
-  resetErrors(formToReset, validationData);
-  formToReset.reset();
-};
-
 //Функция закрытия попапов
 function closePopup(popup) {
-  if (popup !== fullscreenPlacePopup) {
-    resetPopupForms(popup);
-  }
   popup.classList.remove('popup_opened');
 };
 
@@ -74,6 +63,7 @@ function closePopupByEscButton(event) {
 // Открытие попапа для смены имени/описания пользователя
 profileEditPopupOpenButton.addEventListener('click', function() {
   openPopup(profileEditPopup);
+  resetErrors(profileEditForm, validationData);
   userNameInput.value = currentUserName.textContent;
   userJobInput.value = currentUserJob.textContent;
   disableSubmitButton(profileEditFormSubmitButton, validationData);
@@ -99,6 +89,7 @@ const createNewPlaceCard = (card) => {
   newPlaceCardImage.addEventListener('click', function() {
     openPopup(fullscreenPlacePopup);
     fullscreenPlaceImage.src = card.link;
+    fullscreenPlaceImage.alt = 'Фото из карточки Место ' + card.name;
     fullscreenPlaceName.textContent = card.name;
   });
 
@@ -115,7 +106,9 @@ const createNewPlaceCard = (card) => {
   return newPlaceCard;
 };
 
-const renderPlaceCard = (card) => {
+function renderPlaceCard(card, placeCardsContainer) {
+  placeCardsContainer = document.querySelector('.places__list');
+
   placeCardsContainer.prepend(createNewPlaceCard(card));
 };
 
@@ -126,6 +119,10 @@ initialCards.forEach((card) => {
 // Открытие попапа для добавления новой карточки Место
 newPlacePopupOpenButton.addEventListener('click', function() {
   openPopup(newPlacePopup);
+
+  resetErrors(newPlaceForm, validationData);
+
+  newPlaceForm.reset();
 
   disableSubmitButton(newPlaceFormSubmitButton, validationData);
 });
