@@ -32,6 +32,7 @@ function openPopup(popup) {
 //Функция закрытия попапов
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keyup', closePopupByEscButton);
 };
 
 // Закрытие попапов на крестик
