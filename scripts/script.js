@@ -1,10 +1,13 @@
+import { initialCards, validationData } from "./initialData.js";
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+
 const userInfo = document.querySelector('.profile__info');
 const profileEditForm = document.querySelector('[name=profileEdit]');
 const userNameInput = profileEditForm.querySelector('[name=new-username]');
 const userJobInput = profileEditForm.querySelector('[name=new-userjob]');
 const currentUserName = userInfo.querySelector('.profile__info-username');
 const currentUserJob = userInfo.querySelector('.profile__info-userjob');
-const profileEditFormSubmitButton = profileEditForm.querySelector('.popup__submit-btn');
 const profileEditPopup = document.querySelector('.popup_context_edit-profile');
 const profileEditPopupOpenButton = userInfo.querySelector('.profile__info-edit');
 
@@ -12,13 +15,11 @@ const newPlacePopup = document.querySelector('.popup_context_create-new-place');
 const newPlaceForm = newPlacePopup.querySelector('[name=new-place]');
 const newPlaceNameInput = newPlacePopup.querySelector('[name=new-place-name]');
 const newPlaceLinkInput = newPlacePopup.querySelector('[name=new-place-link]');
-const newPlaceFormSubmitButton = newPlacePopup.querySelector('.popup__submit-btn');
 const newPlacePopupOpenButton = document.querySelector('.profile__add-btn');
-const newPlaceCardTemplate = document.querySelector('#place-template').content.querySelector('.place');
 
 const fullscreenPlacePopup = document.querySelector('.popup_context_fullscreen-place');
-let fullscreenPlaceImage = fullscreenPlacePopup.querySelector('.fullscreen-place__image');
-let fullscreenPlaceName = fullscreenPlacePopup.querySelector('.fullscreen-place__name');
+const fullscreenPlaceImage = fullscreenPlacePopup.querySelector('.fullscreen-place__image');
+const fullscreenPlaceName = fullscreenPlacePopup.querySelector('.fullscreen-place__name');
 
 const popups = document.querySelectorAll('.popup');
 const popupCloseButtons = document.querySelectorAll('.popup__close-btn');
@@ -61,13 +62,20 @@ function closePopupByEscButton(event) {
   };
 };
 
+// Валидация форм на странице
+const profileEditFormValidated = new FormValidator(profileEditForm, validationData);
+profileEditFormValidated.enableValidation();
+
+const newPlaceFormValidated = new FormValidator(newPlaceForm, validationData);
+newPlaceFormValidated.enableValidation();
+
 // Открытие попапа для смены имени/описания пользователя
 profileEditPopupOpenButton.addEventListener('click', function() {
   openPopup(profileEditPopup);
-  resetErrors(profileEditForm, validationData);
   userNameInput.value = currentUserName.textContent;
   userJobInput.value = currentUserJob.textContent;
-  disableSubmitButton(profileEditFormSubmitButton, validationData);
+  profileEditFormValidated.resetErrors();
+  profileEditFormValidated.disableSubmitButton();
 });
 
 // Работа с формой для смены имени/описания пользователя
@@ -78,62 +86,43 @@ function profileEditFormHandler(evt) {
   closePopup(profileEditPopup);
 };
 
-// Генерация карточек Место из заданного массива и добавленных позднее
-const createNewPlaceCard = (card) => {
-  const newPlaceCard = newPlaceCardTemplate.cloneNode(true);
-
-  const newPlaceCardName = newPlaceCard.querySelector('.place__name');
-  newPlaceCardName.textContent = card.name;
-
-  const newPlaceCardImage = newPlaceCard.querySelector('.place__image-container');
-  newPlaceCardImage.style.backgroundImage = `url('${card.link}')`;
-  newPlaceCardImage.addEventListener('click', function() {
-    openPopup(fullscreenPlacePopup);
-    fullscreenPlaceImage.src = card.link;
-    fullscreenPlaceImage.alt = 'Фото из карточки Место ' + card.name;
-    fullscreenPlaceName.textContent = card.name;
-  });
-
-  const cardDeleteButton = newPlaceCard.querySelector('.place__delete-btn');
-  cardDeleteButton.addEventListener('click', function(event) {
-    event.target.closest('.place').remove()
-  });
-
-  const likeCardBtn = newPlaceCard.querySelector('.place__like-btn');
-  likeCardBtn.addEventListener('click', function(event) {
-    event.target.closest('.place__like-btn').classList.toggle('place__like-btn_active')
-  });
-
-  return newPlaceCard;
+// Вспомогательная функция для класса Card для открытия фуллскрин Попапа
+function openFullscreenPlacePopup(name, link) {
+  openPopup(fullscreenPlacePopup);
+  fullscreenPlaceImage.src = link;
+  fullscreenPlaceImage.alt = 'Фото из карточки Место ' + name;
+  fullscreenPlaceName.textContent = name;
 };
 
-function renderPlaceCard(card, placeCardsContainer) {
-  placeCardsContainer = document.querySelector('.places__list');
-
-  placeCardsContainer.prepend(createNewPlaceCard(card));
+// Работа с карточками из массива и созданных позднее
+function createPlace(cardData) {
+  const placeCard = new Card(cardData, '#place-template', openFullscreenPlacePopup);
+  const placeCardCreated = placeCard.createNewPlaceCard();
+  return placeCardCreated;
 };
 
-initialCards.forEach((card) => {
-  renderPlaceCard(card);
+function renderPlaceCard(cardData, containerToAppend) {
+  containerToAppend = document.querySelector('.places__list');
+
+  containerToAppend.prepend(createPlace(cardData));
+};
+
+initialCards.forEach((cardData) => {
+  renderPlaceCard(cardData)
 });
 
 // Открытие попапа для добавления новой карточки Место
 newPlacePopupOpenButton.addEventListener('click', function() {
   openPopup(newPlacePopup);
-
-  resetErrors(newPlaceForm, validationData);
-
-  newPlaceForm.reset();
-
-  disableSubmitButton(newPlaceFormSubmitButton, validationData);
+  newPlaceFormValidated.resetErrors();
+  newPlaceFormValidated.reset();
+  newPlaceFormValidated.disableSubmitButton();
 });
 
 // Работа с формой для создания новой карточки Место
 const addNewPlaceFormHandler = (event) => {
   event.preventDefault();
-
   renderPlaceCard({ name: newPlaceNameInput.value, link: newPlaceLinkInput.value });
-
   closePopup(newPlacePopup);
 };
 
