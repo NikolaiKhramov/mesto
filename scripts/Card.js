@@ -15,13 +15,21 @@ export class Card {
     return newPlaceCard;
   }
 
+  removePlaceCard() {
+    this._newPlaceCard.remove();
+  }
+
+  likePlaceCard() {
+    this._likeCardButton.classList.toggle('place__like-btn_active');
+  }
+
   _setEventListeners() {
     this._cardDeleteButton.addEventListener('click', () => {
-      this._newPlaceCard.remove();
+      this.removePlaceCard();
     });
 
     this._likeCardButton.addEventListener('click', () => {
-      this._likeCardButton.classList.toggle('place__like-btn_active');
+      this.likePlaceCard();
     });
 
     this._newPlaceCardImage.addEventListener('click', () => {
