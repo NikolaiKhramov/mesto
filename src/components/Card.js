@@ -1,9 +1,9 @@
-export class Card {
-  constructor(cardData, templateSelector, fullscreenOpener) {
+export default class Card {
+  constructor({cardData, handleCardClick}, templateSelector) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._templateSelector = templateSelector;
-    this._fullscreenOpener = fullscreenOpener;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -33,7 +33,7 @@ export class Card {
     });
 
     this._newPlaceCardImage.addEventListener('click', () => {
-      this._fullscreenOpener(this._name, this._link);
+      this._handleCardClick(this._name, this._link);
     });
   }
 

@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(formElement, validationData) {
     this._formElement = formElement;
     this._validationData = validationData;
@@ -66,10 +66,6 @@ export class FormValidator {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
-  }
-
-  reset() {
-    this._formElement.reset();
   }
 
   enableValidation() {

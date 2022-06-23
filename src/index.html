@@ -5,16 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
   <header class="header">
-    <img src="./images/logo.svg" alt="Логотип Место" class="header__logo">
+    <img src="<%=require('./images/logo.svg')%>" alt="Логотип Место" class="header__logo">
   </header>
   <main class="content">
     <section class="profile">
       <div class="profile__user">
-        <img src="./images/profile__avatar.jpg" alt="Аватар пользователя" class="profile__avatar">
+        <img src="<%=require('./images/profile__avatar.jpg')%>" alt="Аватар пользователя" class="profile__avatar">
         <div class="profile__info">
           <h1 class="profile__info-username">Жак-Ив Кусто</h1>
           <button class="profile__info-edit" type="button"></button>
@@ -37,11 +36,11 @@
       <h2 class="popup__purpose">Редактировать профиль</h2>
       <form class="form form_context_edit-profile" name="profileEdit" novalidate>
         <fieldset class="form__fieldset">
-          <input id="username" type="text" class="form__input form__input_context_username" name="new-username" placeholder="Ваше имя" required minlength="2" maxlength="40">
+          <input id="username" type="text" class="form__input form__input_context_username" name="username" placeholder="Ваше имя" required minlength="2" maxlength="40">
           <span id="username-error" class="form__error"></span>
         </fieldset>
         <fieldset class="form__fieldset">
-          <input id="userjob" type="text" class="form__input form__input_context_userjob" name="new-userjob" placeholder="Ваш род деятельности" required minlength="2" maxlength="200">
+          <input id="userjob" type="text" class="form__input form__input_context_userjob" name="userjob" placeholder="Ваш род деятельности" required minlength="2" maxlength="200">
           <span id="userjob-error" class="form__error"></span>
         </fieldset>
         <button type="submit" class="popup__submit-btn">Сохранить</button>
@@ -54,11 +53,11 @@
       <h2 class="popup__purpose">Новое место</h2>
       <form class="form form_context_add-new-place" name="new-place" novalidate>
         <fieldset class="form__fieldset">
-          <input id="place-name" type="text" class="form__input form__input_context_place-name" name="new-place-name" placeholder="Название места" minlength="2" maxlength="30" required>
+          <input id="place-name" type="text" class="form__input form__input_context_place-name" name="name" placeholder="Название места" minlength="2" maxlength="30" required>
           <span id="place-name-error" class="form__error"></span>
         </fieldset>
         <fieldset class="form__fieldset">
-          <input id="place-link" type="url" class="form__input form__input_context_place-link" name="new-place-link" placeholder="Ссылка на картинку" required>
+          <input id="place-link" type="url" class="form__input form__input_context_place-link" name="link" placeholder="Ссылка на картинку" required>
           <span id="place-link-error" class="form__error"></span>
         </fieldset>
         <button type="submit" class="popup__submit-btn">Создать</button>
@@ -82,6 +81,6 @@
       </div>
     </li>
   </template>
-  <script type="module" src="./scripts/script.js"></script>
+  <script type="module" src="./pages/index.js"></script>
 </body>
 </html>
