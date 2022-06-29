@@ -17,6 +17,7 @@ export default class Card {
 
   removePlaceCard() {
     this._newPlaceCard.remove();
+    this._newPlaceCard = null;
   }
 
   likePlaceCard() {
@@ -40,11 +41,11 @@ export default class Card {
   createNewPlaceCard() {
     this._newPlaceCard = this._getTemplate();
     this._newPlaceCardImage = this._newPlaceCard.querySelector('.place__image-container');
-    this._newPlaceCardImage.style.backgroundImage = `url('${this._link}')`;
     this._newPlaceCardName = this._newPlaceCard.querySelector('.place__name');
-    this._newPlaceCardName.textContent = this._name;
     this._cardDeleteButton = this._newPlaceCard.querySelector('.place__delete-btn');
     this._likeCardButton = this._newPlaceCard.querySelector('.place__like-btn');
+    this._newPlaceCardImage.style.backgroundImage = `url('${this._link}')`;
+    this._newPlaceCardName.textContent = this._name;
     this._setEventListeners();
 
     return this._newPlaceCard;

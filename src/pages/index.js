@@ -1,6 +1,12 @@
 import './index.css';
 import { initialCards, validationData } from "../utils/initialData.js";
-import {  profileEditForm, userNameInput, userJobInput, profileEditPopupOpenButton, newPlaceForm, newPlacePopupOpenButton } from '../utils/constants.js';
+import {
+  profileEditForm,
+  userNameInput,
+  userJobInput,
+  profileEditPopupOpenButton,
+  newPlaceForm,
+  newPlacePopupOpenButton } from '../utils/constants.js';
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -22,9 +28,8 @@ function createPlaceCard(cardData) {
     handleCardClick: (name, link) => {
       fullscreenPopup.openPopup(name, link);
     }}, '#place-template');
-  const placeCardCompleted = placeCard.createNewPlaceCard();
 
-  return placeCardCompleted;
+  return placeCard.createNewPlaceCard();
 };
 
 const cardsList = new Section({
@@ -60,12 +65,12 @@ const editProfilePopup = new PopupWithForm({
 editProfilePopup.setEventListeners();
 
 profileEditPopupOpenButton.addEventListener('click', () => {
-  const currentUserInfo = userInfo.getUserInfo();
-  userNameInput.value = currentUserInfo.currentName;
-  userJobInput.value = currentUserInfo.currentJob;
-  editProfilePopup.openPopup();
+  const { currentName, currentJob } = userInfo.getUserInfo();
+  userNameInput.value = currentName;
+  userJobInput.value = currentJob;
   profileEditFormValidated.resetErrors();
   profileEditFormValidated.disableSubmitButton();
+  editProfilePopup.openPopup();
 });
 
 // Работа с попапом для добавления новой карточки Mesto
@@ -80,7 +85,7 @@ const newPlacePopup = new PopupWithForm({
 newPlacePopup .setEventListeners();
 
 newPlacePopupOpenButton.addEventListener('click', () => {
-  newPlacePopup .openPopup();
   newPlaceFormValidated.resetErrors();
   newPlaceFormValidated.disableSubmitButton();
+  newPlacePopup .openPopup();
 });

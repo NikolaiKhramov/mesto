@@ -8,4 +8,12 @@ const newPlacePopup = document.querySelector('.popup_context_create-new-place');
 const newPlaceForm = newPlacePopup.querySelector('[name=new-place]');
 const newPlacePopupOpenButton = document.querySelector('.profile__add-btn');
 
-export { userInfo, profileEditForm, userNameInput, userJobInput, profileEditPopupOpenButton, newPlacePopup, newPlaceForm, newPlacePopupOpenButton };
+export {
+  userInfo,
+  profileEditForm,
+  userNameInput,
+  userJobInput,
+  profileEditPopupOpenButton,
+  newPlacePopup,
+  newPlaceForm,
+  newPlacePopupOpenButton };
