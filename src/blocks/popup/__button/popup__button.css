@@ -1,4 +1,4 @@
-.popup__submit-btn {
+.popup__button {
   margin-top: 48px;
   padding: 14px 125px;
   border: none;
@@ -13,14 +13,14 @@
   color: #FFFFFF;
 }
 
-.popup__submit-btn:hover {
+.popup__button:hover {
   opacity: 0.8;
   transition: opacity 0.2s linear;
   cursor: pointer;
 }
 
 @media (max-width: 676px) {
-  .popup__submit-btn {
+  .popup__button {
     margin-top: 45px;
     padding: 14px 82px;
     font-size: 14px;
