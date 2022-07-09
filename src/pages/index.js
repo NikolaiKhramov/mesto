@@ -36,6 +36,9 @@ api.getContent()
     currentUserId = userData._id;
     userInfo.setUserInfo(userData);
     cardsList.renderItems(initialCards);
+  })
+  .catch((err) => {
+    console.log(`Ошибка ${err}`);
   });
 
 // Валидация форм на странице
